@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Photo gallery — Nathan Waisserberg, Cape Town 2026. Drag the wheel to browse 11 photos from the trip." />
+  <title>Photos — Nathan Waisserberg Cape Town 2026</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pictures.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       HEADER
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">Nathan Waisserberg</a>
+      <p class="site-tagline">Cape Town, South Africa &nbsp;·&nbsp; 2026</p>
+      <nav aria-label="Main navigation">
+        <ul class="site-nav">
+          <li><a href="index.html"           class="nav-link">Home</a></li>
+          <li><a href="pictures.html"        class="nav-link">Photos</a></li>
+          <li><a href="lessons-learned.html" class="nav-link">Lessons Learned</a></li>
+          <li><a href="reflections.html"     class="nav-link">Reflections</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="page-content">
+
+    <!-- -------------------------------------------------------------------
+         PAGE TITLE
+         ------------------------------------------------------------------- -->
+    <div class="pictures-header">
+      <div class="pictures-header-inner">
+        <p class="pictures-eyebrow">Cape Town, South Africa &mdash; 2026</p>
+        <h1 class="pictures-page-title">Photo Gallery</h1>
+        <p class="pictures-page-subtitle">
+          Drag the wheel to spin it, or use the buttons and arrow keys.
+          The photo loads when you let go.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- -------------------------------------------------------------------
+         WHEEL + DISPLAY
+         ------------------------------------------------------------------- -->
+    <section class="pictures-main" aria-label="Photo carousel">
+      <div class="pictures-layout">
+
+        <!-- LEFT: Wheel + controls -->
+        <div class="pictures-left">
+
+          <!--
+            .wheel-area    — drag target; receives all mouse/touch events
+            .wheel-ring    — the rotating ring; icons appended here by wheel.js
+            .wheel-selection-box — fixed frame at 3 o'clock showing active icon
+            .wheel-connector     — decorative line leading to the photo panel
+          -->
+          <div class="wheel-area" id="wheelArea"
+               role="group" aria-label="Photo wheel — drag to spin, release to load photo">
+
+            <div class="wheel-ring" id="wheelRing" aria-hidden="true"></div>
+
+            <div class="wheel-selection-box" aria-hidden="true"></div>
+
+            <div class="wheel-connector" aria-hidden="true"></div>
+
+          </div>
+
+          <!-- Prev / Next controls -->
+          <div class="wheel-controls">
+            <button class="btn-wheel-nav" id="btnPrev" aria-label="Previous photo">
+              &#8592; Prev
+            </button>
+            <span class="wheel-counter" id="wheelCounter" aria-live="polite" aria-atomic="true">
+              1 of 11
+            </span>
+            <button class="btn-wheel-nav" id="btnNext" aria-label="Next photo">
+              Next &#8594;
+            </button>
+          </div>
+
+          <p class="wheel-scroll-hint">drag &nbsp;·&nbsp; scroll &nbsp;·&nbsp; arrow keys</p>
+
+        </div><!-- /pictures-left -->
+
+
+        <!-- RIGHT: Photo display -->
+        <div class="pictures-right" aria-live="polite" aria-label="Selected photo">
+
+          <div class="display-photo-frame">
+            <img id="displayPhoto" src="" alt="Selected photo" loading="lazy" />
+          </div>
+
+          <div class="display-info">
+            <p class="display-counter" id="displayCounter"></p>
+            <h2 class="display-title" id="displayTitle">Select a photo</h2>
+            <p class="display-description" id="displayDescription">
+              Drag or spin the wheel on the left, or click any icon to choose a photo.
+            </p>
+          </div>
+
+        </div><!-- /pictures-right -->
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    <p>Nathan Waisserberg &mdash; UFIC Study Abroad, Cape Town, South Africa &mdash; 2026</p>
+    <p>University of Florida &nbsp;|&nbsp; Princess Vlei Forum</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/wheel.js" defer></script>
+
+</body>
+</html>

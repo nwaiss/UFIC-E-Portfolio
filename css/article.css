@@ -1,0 +1,331 @@
+/* ==========================================================================
+   ARTICLE.CSS — Shared styles for lessons-learned.html and reflections.html.
+   Color palette: South African flag (see main.css tokens).
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. ARTICLE PAGE HERO
+   -------------------------------------------------------------------------- */
+.article-hero {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: var(--sp-16) var(--sp-8) var(--sp-12);
+  border-bottom: 4px solid var(--gold);
+}
+
+.article-hero-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.article-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  margin-bottom: var(--sp-4);
+}
+
+.article-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: var(--sp-6);
+}
+
+.article-hero-rule {
+  width: 40px;
+  height: 4px;
+  background-color: var(--gold);
+  border: none;
+  margin: var(--sp-6) 0;
+}
+
+.article-hero-intro {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+/* Meta info row (program, year, etc.) */
+.article-meta {
+  margin-top: var(--sp-8);
+  display: flex;
+  gap: var(--sp-8);
+  flex-wrap: wrap;
+}
+
+.article-meta-item {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+}
+
+.article-meta-item strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. ARTICLE BODY LAYOUT
+   Comfortable reading width (~70 ch), centered.
+   -------------------------------------------------------------------------- */
+.article-body-wrap {
+  padding: var(--sp-24) var(--sp-8) var(--sp-32);
+}
+
+.article-body {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. ARTICLE TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+
+/* --- Section headings (h2) --- */
+.article-body h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--blue);
+  line-height: 1.2;
+  margin-top: var(--sp-16);
+  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-3);
+  border-bottom: 2px solid var(--light);
+}
+
+/* Colored square prefix on h2 */
+.article-body h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--green);
+  margin-right: var(--sp-3);
+  vertical-align: middle;
+}
+
+/* --- Sub-headings (h3) --- */
+.article-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--black);
+  margin-top: var(--sp-10);
+  margin-bottom: var(--sp-4);
+}
+
+/* --- Body paragraphs --- */
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--mid);
+  margin-bottom: var(--sp-6);
+  max-width: 68ch;
+}
+
+/* Drop cap on the first paragraph of the whole article */
+.article-body .article-section:first-of-type p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.4em;
+  color: var(--blue);
+  float: left;
+  line-height: 0.82;
+  margin-right: 0.08em;
+  margin-top: 0.05em;
+}
+
+/* --- Lists --- */
+.article-body ul,
+.article-body ol {
+  margin-bottom: var(--sp-6);
+  padding-left: var(--sp-6);
+}
+
+.article-body li {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: var(--sp-2);
+  list-style: disc;
+}
+
+/* --- Emphasis --- */
+.article-body strong { color: var(--black); font-weight: 600; }
+.article-body em     { color: var(--black); }
+
+
+/* --------------------------------------------------------------------------
+   4. PULL QUOTE
+   Stands out from body — red left border, larger serif text.
+   -------------------------------------------------------------------------- */
+.pull-quote {
+  margin: var(--sp-12) 0;
+  padding: var(--sp-6) var(--sp-8);
+  border-left: 5px solid var(--red);
+  background-color: var(--pale);
+}
+
+.pull-quote-text {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--blue);
+  font-style: italic;
+  margin: 0;
+}
+
+.pull-quote-text::before { content: '\201C'; }
+.pull-quote-text::after  { content: '\201D'; }
+
+.pull-quote-attribution {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  margin-top: var(--sp-4);
+  font-style: normal;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. INLINE PHOTOS
+   -------------------------------------------------------------------------- */
+.article-photo {
+  margin: var(--sp-10) 0;
+}
+
+.article-photo--full { width: 100%; }
+
+.article-photo--right {
+  float: right;
+  width: 44%;
+  margin-left: var(--sp-8);
+  margin-bottom: var(--sp-6);
+}
+
+.article-photo--left {
+  float: left;
+  width: 44%;
+  margin-right: var(--sp-8);
+  margin-bottom: var(--sp-6);
+}
+
+.article-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top: 3px solid var(--green);
+}
+
+.article-photo .photo-placeholder-box {
+  background-color: var(--pale);
+  border: 1px solid var(--light);
+  border-top: 3px solid var(--green);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--mid);
+  font-style: italic;
+}
+
+.article-photo figcaption {
+  font-size: 0.74rem;
+  color: var(--mid);
+  font-style: italic;
+  margin-top: var(--sp-2);
+  line-height: 1.5;
+  border-left: 2px solid var(--light);
+  padding-left: var(--sp-3);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. ARTICLE SECTIONS — clear float from floated images
+   -------------------------------------------------------------------------- */
+.article-section {
+  margin-bottom: var(--sp-10);
+  display: flow-root;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. CALLOUT / ASIDE BOX
+   -------------------------------------------------------------------------- */
+.article-callout {
+  background-color: var(--white);
+  border-left: 4px solid var(--green);
+  padding: var(--sp-6) var(--sp-8);
+  margin: var(--sp-8) 0;
+}
+
+.article-callout-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--green);
+  margin-bottom: var(--sp-3);
+}
+
+.article-callout p {
+  margin-bottom: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. CLOSING / SIGNATURE
+   -------------------------------------------------------------------------- */
+.article-closing {
+  margin-top: var(--sp-16);
+  padding-top: var(--sp-8);
+  border-top: 2px solid var(--light);
+}
+
+.article-closing-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--blue);
+}
+
+.article-closing-meta {
+  font-size: 0.8rem;
+  color: var(--mid);
+  margin-top: var(--sp-2);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .article-photo--right,
+  .article-photo--left {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .article-body-wrap { padding: var(--sp-12) var(--sp-4) var(--sp-16); }
+  .article-hero { padding: var(--sp-10) var(--sp-4) var(--sp-8); }
+  .article-body h2 { font-size: 1.35rem; }
+  .pull-quote-text { font-size: 1.1rem; }
+}

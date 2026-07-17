@@ -1,0 +1,248 @@
+/* ==========================================================================
+   HOME.CSS — Styles for index.html.
+   Covers: hero, overview section (3-column), quick-nav cards.
+   Color palette: University of Florida (see main.css tokens).
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: var(--sp-24) var(--sp-8) var(--sp-16);
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  margin-bottom: var(--sp-6);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: var(--sp-6);
+}
+
+/* Flag-color rule between title and subtitle */
+.hero-rule {
+  border: none;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto var(--sp-8);
+  height: 4px;
+  background: linear-gradient(to right, var(--green) 50%, var(--gold) 50%);
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 52ch;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. OVERVIEW SECTION — 3-column: photo | text | photo
+   -------------------------------------------------------------------------- */
+.overview-section {
+  padding: var(--sp-24) 0 var(--sp-16);
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  grid-template-areas: "left text right";
+  gap: var(--sp-10);
+  align-items: center;
+}
+
+/* ---- Photo columns ---- */
+.overview-photo-col {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.overview-photo-col--left  { grid-area: left; }
+.overview-photo-col--right { grid-area: right; }
+
+/* Photo frame wrapper */
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--light);
+  border: 1px solid var(--light);
+  width: 100%;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-frame--tall  { aspect-ratio: 3 / 4; }
+.photo-frame--wide  { aspect-ratio: 16 / 9; }
+
+/* ---- Text column ---- */
+.overview-text {
+  grid-area: text;
+}
+
+.overview-section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--red);
+  margin-bottom: var(--sp-4);
+}
+
+.overview-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--blue);
+  margin-bottom: var(--sp-8);
+  padding-left: var(--sp-6);
+  border-left: 4px solid var(--green);
+}
+
+.overview-body p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--mid);
+  margin-bottom: var(--sp-6);
+  max-width: 65ch;
+}
+
+/* Acknowledgements line at bottom of overview */
+.overview-thanks {
+  font-size: 0.88rem;
+  color: var(--mid);
+  border-left: 3px solid var(--gold);
+  padding-left: var(--sp-4);
+  margin-top: var(--sp-8);
+  line-height: 1.6;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. QUICK-NAV CARDS
+   -------------------------------------------------------------------------- */
+.nav-cards-section {
+  padding: var(--sp-16) 0 var(--sp-24);
+  background-color: var(--pale);
+  border-top: 1px solid var(--light);
+}
+
+.nav-cards-heading {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--blue);
+  margin-bottom: var(--sp-10);
+  font-weight: 400;
+}
+
+.nav-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-8);
+  background-color: var(--white);
+  border: 1px solid var(--light);
+  border-top: 3px solid var(--green);
+  transition: border-top-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-card:hover {
+  border-top-color: var(--gold);
+  box-shadow: 0 6px 20px rgba(0, 35, 149, 0.08);
+  transform: translateY(-3px);
+}
+
+.nav-card-icon {
+  font-size: 1.6rem;
+  margin-bottom: var(--sp-4);
+  line-height: 1;
+}
+
+.nav-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--blue);
+  margin-bottom: var(--sp-3);
+}
+
+.nav-card-desc {
+  font-size: 0.85rem;
+  color: var(--mid);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.nav-card-arrow {
+  margin-top: var(--sp-6);
+  font-size: 1rem;
+  color: var(--green);
+  align-self: flex-end;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.nav-card:hover .nav-card-arrow {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .overview-grid { grid-template-columns: 220px 1fr 220px; }
+}
+
+@media (max-width: 860px) {
+  /* Tablet: photos side by side below text */
+  .overview-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "text text"
+      "left right";
+    gap: var(--sp-6);
+  }
+  .nav-cards-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: var(--sp-16) var(--sp-4) var(--sp-12); }
+  /* Mobile: single column, hide second photo */
+  .overview-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "text"
+      "left";
+  }
+  .overview-photo-col--right { display: none; }
+  .nav-cards-grid { grid-template-columns: 1fr; }
+}

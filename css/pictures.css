@@ -1,0 +1,396 @@
+/* ==========================================================================
+   PICTURES.CSS — Photo wheel carousel page.
+
+   WHEEL DIMENSIONS (must match WHEEL_CONFIG in wheel.js):
+     Ring:           494 × 494 px  (border circle visible on screen)
+     Ring center:    (273, 273)    in .wheel-area coordinates
+     Icon RADIUS:    208 px        from ring center to icon center
+     Icon SIZE:      68 px
+     Selection box:  centered on angle-0 icon position (273+208, 273) = (481, 273)
+                     left: 481-44 = 437px, top: 273-44 = 229px, size: 88×88
+
+   INTERACTION:
+     • Click + drag on .wheel-area to rotate the wheel (handled by wheel.js)
+     • Photo does NOT load until the mouse/touch is released
+     • Scroll wheel and arrow keys also work (wheel.js)
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. PAGE TITLE STRIP
+   -------------------------------------------------------------------------- */
+.pictures-header {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: var(--sp-10) var(--sp-8) var(--sp-8);
+  border-bottom: 4px solid var(--gold);
+}
+
+.pictures-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.pictures-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--gold);
+  margin-bottom: var(--sp-3);
+}
+
+.pictures-page-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: var(--sp-2);
+}
+
+.pictures-page-subtitle {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 55ch;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. MAIN TWO-COLUMN LAYOUT
+   -------------------------------------------------------------------------- */
+.pictures-main {
+  padding: var(--sp-16) 0 var(--sp-24);
+}
+
+.pictures-layout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--sp-8);
+  display: flex;
+  gap: var(--sp-12);
+  align-items: center;
+}
+
+/* Left column holds the wheel + controls */
+.pictures-left {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+/* Right column fills remaining space */
+.pictures-right {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. WHEEL COMPONENT
+
+   The wheel-area is a positioned container. Inside it:
+     .wheel-ring          — the rotating circle; icons are JS-appended children
+     .wheel-selection-box — a hollow frame at the 3 o'clock position (right edge)
+                            No content inside — the wheel icon shows through
+     .wheel-connector     — decorative line from selection box to photo panel
+
+   Drag is handled in wheel.js. cursor style communicates draggability.
+   -------------------------------------------------------------------------- */
+
+.wheel-area {
+  position: relative;
+  /* Width: ring-left(26) + ring(494) + selection-bleed + connector(60) */
+  width: 590px;
+  /* Height: ring(494) + top-margin(26) + bottom-margin(26) */
+  height: 546px;
+
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.wheel-area:active {
+  cursor: grabbing;
+}
+
+/* The circular ring — JS rotates this element */
+.wheel-ring {
+  position: absolute;
+  left: 26px;
+  top: 26px;
+  width: 494px;
+  height: 494px;
+  border-radius: 50%;
+
+  border: 2px solid var(--light);
+  background-color: var(--white);
+
+  /* Transitions applied by JS — none on initial load */
+  transition: none;
+  will-change: transform;
+}
+
+/* Outer decorative halo around the ring */
+.wheel-ring::before {
+  content: '';
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+  border: 1px solid var(--light);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Center hub dot */
+.wheel-ring::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: var(--green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---- Each icon element positioned around the ring ---- */
+.wheel-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68px;
+  height: 68px;
+  margin-top: -34px;    /* -ICON_SIZE / 2 */
+  margin-left: -34px;   /* -ICON_SIZE / 2 */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  background-color: var(--cream);
+  border: 1.5px solid var(--light);
+  cursor: pointer;
+  will-change: transform;
+
+  /* Color transitions managed here; transform transitions set by JS */
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+.wheel-icon:hover {
+  background-color: rgba(0, 48, 135, 0.08);
+  border-color: var(--green);
+}
+
+/* Active (selected) icon — filled */
+.wheel-icon.active {
+  background-color: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(0, 48, 135, 0.15);
+}
+
+/* Invert emoji color on dark background */
+.wheel-icon.active .wheel-icon-symbol {
+  filter: brightness(10);
+}
+
+.wheel-icon-symbol {
+  font-size: 1.9rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ---- Selection box — hollow frame, always at 3 o'clock ----
+   Position formula:
+     left = ring-left(26) + ring-radius(247) + icon-radius(208) - box-half(44) = 437
+     top  = ring-top(26)  + ring-radius(247) - box-half(44)                   = 229  */
+.wheel-selection-box {
+  position: absolute;
+  left: 437px;
+  top: 229px;
+  width: 88px;
+  height: 88px;
+  border: 5px solid var(--gold);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Connector line from selection box rightward to the photo panel */
+.wheel-connector {
+  position: absolute;
+  left: 525px;    /* right edge of selection box (437 + 88) */
+  top: 272px;     /* ring center y = 26 + 247 = 273, minus 1 for line center */
+  width: 60px;
+  height: 2px;
+  background-color: var(--gold);
+  opacity: 0.45;
+}
+
+/* Dot at the connector's right end */
+.wheel-connector::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--gold);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. NAVIGATION CONTROLS
+   -------------------------------------------------------------------------- */
+.wheel-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.btn-wheel-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  border: 2px solid var(--green);
+  background-color: transparent;
+  color: var(--green);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-wheel-nav:hover {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.btn-wheel-nav:active {
+  opacity: 0.85;
+}
+
+/* Item counter between buttons */
+.wheel-counter {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--mid);
+  min-width: 6ch;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* Drag hint below controls */
+.wheel-scroll-hint {
+  font-size: 0.68rem;
+  color: var(--mid);
+  text-align: center;
+  opacity: 0.65;
+  letter-spacing: 0.06em;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. PHOTO DISPLAY PANEL
+   -------------------------------------------------------------------------- */
+
+/* Photo image wrapper — full 4-sided border */
+.display-photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--pale);
+  overflow: hidden;
+  border: 4px solid var(--green);
+}
+
+/* The photo itself — fades on swap */
+#displayPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s ease;
+}
+
+/* JS adds this class to fade out before swapping src */
+#displayPhoto.fading {
+  opacity: 0;
+}
+
+/* Info area below photo */
+.display-info {
+  padding: var(--sp-6) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+/* Counter: "3 of 11" */
+.display-counter {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+/* Photo title */
+.display-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--blue);
+  line-height: 1.2;
+}
+
+/* Photo description */
+.display-description {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.8;
+  max-width: 58ch;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .pictures-layout { gap: var(--sp-8); }
+}
+
+@media (max-width: 1020px) {
+  /* Stack on narrow screens */
+  .pictures-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pictures-right {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 620px) {
+  .wheel-area {
+    transform: scale(0.75);
+    transform-origin: top center;
+  }
+}

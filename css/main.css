@@ -1,0 +1,244 @@
+/* ==========================================================================
+   MAIN.CSS — Shared styles for every page.
+   Design system: University of Florida colors.
+   Covers: tokens, reset, header/nav, footer, utilities.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Colors drawn from the University of Florida brand palette:
+     Blue #003087 · Orange #FA4616
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- University of Florida Palette --- */
+  --green:   #003087;   /* UF Blue   — header, primary buttons, borders      */
+  --gold:    #FA4616;   /* UF Orange — active states, accents, underlines    */
+  --red:     #d63b10;   /* deep orange — pull quotes, CTAs (slightly darker) */
+  --blue:    #001f5b;   /* deep UF Blue — hero backgrounds, headings         */
+  --black:   #1a1a1a;   /* soft black  — body text                          */
+  --white:   #ffffff;
+
+  /* --- Neutrals --- */
+  --cream:   #f7f5f0;   /* warm off-white — page background                 */
+  --light:   #e2dbd0;   /* warm border / divider color                      */
+  --mid:     #575757;   /* secondary text                                   */
+  --pale:    #f0ede7;   /* light section backgrounds                        */
+
+  /* --- Typography --- */
+  --font-serif: Georgia, 'Palatino Linotype', Palatino, serif;
+  --font-sans:  'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+  /* --- Spacing scale (4 px base) --- */
+  --sp-1:  0.25rem;   /*  4px */
+  --sp-2:  0.5rem;    /*  8px */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1rem;      /* 16px */
+  --sp-6:  1.5rem;    /* 24px */
+  --sp-8:  2rem;      /* 32px */
+  --sp-10: 2.5rem;    /* 40px */
+  --sp-12: 3rem;      /* 48px */
+  --sp-16: 4rem;      /* 64px */
+  --sp-24: 6rem;      /* 96px */
+  --sp-32: 8rem;      /* 128px */
+
+  /* --- Layout --- */
+  --max-width:     1200px;
+  --header-height: 106px;   /* accounts for 3-row centered header */
+  --border-radius: 4px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--black);
+  background-color: var(--cream);
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a   { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. SITE HEADER — centered, three-row layout
+   Row 1: Name (large serif)
+   Row 2: Subtitle (location / year)
+   Row 3: Navigation links
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--green);
+  border-bottom: 4px solid var(--gold);
+  z-index: 200;
+}
+
+/* Center everything; stack into three rows */
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px var(--sp-8) 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Row 1 — name */
+.site-logo {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--white);
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Row 2 — location + year subtitle */
+.site-tagline {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  text-align: center;
+}
+
+/* Row 3 — nav links */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-8);
+  margin-top: 4px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.18s, border-color 0.18s;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--gold);
+}
+
+/* Active page link — gold underline */
+.nav-link.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. PAGE CONTENT WRAPPER
+   Pushes all content below the fixed header.
+   -------------------------------------------------------------------------- */
+.page-content {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--sp-8);
+  padding-right: var(--sp-8);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--light);
+  margin: var(--sp-16) 0;
+}
+
+/* Small colored label above a heading */
+.eyebrow {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--red);
+  margin-bottom: var(--sp-3);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. SITE FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--blue);
+  color: rgba(255, 255, 255, 0.75);
+  padding: var(--sp-12) var(--sp-8);
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  margin-top: var(--sp-32);
+}
+
+/* Gold accent rule above footer */
+.site-footer::before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0 auto var(--sp-8);
+}
+
+.site-footer p + p {
+  margin-top: var(--sp-2);
+  opacity: 0.6;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  :root { --header-height: 96px; }
+  .site-nav { gap: var(--sp-6); }
+  .site-logo { font-size: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  :root { --header-height: 106px; }
+  .site-nav { gap: var(--sp-4); flex-wrap: wrap; justify-content: center; }
+  .nav-link { font-size: 0.65rem; letter-spacing: 0.08em; }
+  .site-logo { font-size: 1.3rem; }
+  .header-inner { padding: 12px var(--sp-4) 10px; }
+}
