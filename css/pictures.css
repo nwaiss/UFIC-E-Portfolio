@@ -22,37 +22,22 @@
 .pictures-header {
   background-color: var(--blue);
   color: var(--white);
-  padding: var(--sp-10) var(--sp-8) var(--sp-8);
+  padding: var(--sp-3) var(--sp-8);
   border-bottom: 4px solid var(--gold);
 }
 
 .pictures-header-inner {
   max-width: var(--max-width);
   margin: 0 auto;
-}
-
-.pictures-eyebrow {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  color: var(--gold);
-  margin-bottom: var(--sp-3);
+  text-align: center;
 }
 
 .pictures-page-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.1;
-  margin-bottom: var(--sp-2);
-}
-
-.pictures-page-subtitle {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.65);
-  max-width: 55ch;
+  line-height: 1.2;
 }
 
 
@@ -60,7 +45,7 @@
    2. MAIN TWO-COLUMN LAYOUT
    -------------------------------------------------------------------------- */
 .pictures-main {
-  padding: var(--sp-16) 0 var(--sp-24);
+  padding: var(--sp-4) 0 var(--sp-4);
 }
 
 .pictures-layout {
@@ -78,7 +63,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--sp-8);
+  gap: var(--sp-3);
 }
 
 /* Right column fills remaining space */
@@ -335,7 +320,7 @@
 
 /* Info area below photo */
 .display-info {
-  padding: var(--sp-6) 0 0;
+  padding: var(--sp-3) 0 0;
   display: flex;
   flex-direction: column;
   gap: var(--sp-3);
