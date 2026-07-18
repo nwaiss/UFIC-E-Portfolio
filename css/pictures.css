@@ -185,15 +185,18 @@
   box-shadow: 0 0 0 4px rgba(0, 48, 135, 0.15);
 }
 
-/* Invert emoji color on dark background */
-.wheel-icon.active .wheel-icon-symbol {
-  filter: brightness(10);
+/* PNG icon image inside each wheel button */
+.wheel-icon-symbol {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
 }
 
-.wheel-icon-symbol {
-  font-size: 1.9rem;
-  line-height: 1;
-  pointer-events: none;
+/* Invert to white on the dark active background */
+.wheel-icon.active .wheel-icon-symbol {
+  filter: brightness(0) invert(1);
 }
 
 /* ---- Selection box — hollow frame, always at 3 o'clock ----

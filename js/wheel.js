@@ -37,67 +37,67 @@
    Final Presentation (lessons), Roommate (reflections), Gold Bongo (reflections). */
 const PHOTO_ITEMS = [
   {
-    icon: '🏔️',
+    icon: 'Icons/Table.png',
     title: 'Table Mountain',
     description: 'On our first day in Cape Town, we took in aerial views of the city from the top of Table Mountain.',
     photo: 'Photos/Table Mountain.jpeg'
   },
   {
-    icon: '🧗',
+    icon: 'Icons/Climber.png',
     title: "Lion's Head Peak",
     description: "After finally reaching the peak, it was incredible how different the city looked from above.",
     photo: 'Photos/Lionhead Peak.jpeg'
   },
   {
-    icon: '🥾',
+    icon: 'Icons/Hill Climb.png',
     title: "Lion's Head",
     description: "This photo was taken at the base of Lion's Head, a 669-meter peak on Cape Town's Atlantic Seaboard known for its iconic chain-and-ladder hike to the summit.",
     photo: 'Photos/Lionhead Base.jpeg'
   },
   {
-    icon: '👨‍🍳',
+    icon: 'Icons/Chef Hat.png',
     title: 'Cooking Experience',
     description: "I was able to channel my inner Gordon Ramsay as our group learned to prepare Indian cuisine, including samosas and roti.",
     photo: 'Photos/Cooking Experience.jpeg'
   },
   {
-    icon: '🦁',
+    icon: 'Icons/Safari.png',
     title: 'Safari',
     description: 'Aquila Safari took us through a private reserve where we saw zebras, ostriches, springbok, hippos, elephants, giraffes, and lions.',
     photo: 'Photos/Safari.jpeg'
   },
   {
-    icon: '⛵',
+    icon: 'Icons/Boat.png',
     title: 'Seal Island',
     description: 'This boat trip took us around a small island where hundreds of Cape fur seals resided.',
     photo: 'Photos/Seal Isalnd Boat.jpeg'
   },
   {
-    icon: '🪂',
+    icon: 'Icons/Zipline.png',
     title: 'Ziplining',
     description: 'This photo shows the buggy ride, known as the African Massage, that took us up the mountain before we ziplined 100 meters above the ground.',
     photo: 'Photos/Ziplinning African Massage.jpeg'
   },
   {
-    icon: '📦',
+    icon: 'Icons/Amazon.png',
     title: 'Amazon Skill Center',
-    description: 'We visited Amazon\'s Skill Center in Cape Town, where we learned about AWS and had the opportunity to practice our coding and presentation skills.',
+    description: "We visited Amazon's Skill Center in Cape Town, where we learned about AWS and had the opportunity to practice our coding and presentation skills.",
     photo: 'Photos/Amazon Skill Center.jpeg'
   },
   {
-    icon: '🏮',
+    icon: 'Icons/Lantern.png',
     title: 'Taiwan Festival',
     description: 'During our time in Cape Town, a Taiwanese festival was taking place at the waterfront, immersing us in food, drinks, and performances.',
     photo: 'Photos/Taiwan Festical.jpeg'
   },
   {
-    icon: '🏫',
+    icon: 'Icons/High School.png',
     title: 'High School Visit',
     description: 'Our group was tasked with helping students at Curro Delft High School create tech solutions to problems they encounter in their daily lives.',
     photo: 'Photos/High School Experience.jpeg'
   },
   {
-    icon: '💣',
+    icon: 'Icons/Cannon.png',
     title: 'Cannon',
     description: "This cannon was one of many scattered throughout Cape Town. This particular one stood in front of a local market.",
     photo: 'Photos/Cannon.jpeg'
@@ -176,11 +176,12 @@ class PhotoWheel {
       el.setAttribute('tabindex', '0');
       el.setAttribute('aria-label', item.title);
 
-      const symbol = document.createElement('span');
-      symbol.className = 'wheel-icon-symbol';
-      symbol.textContent = item.icon;
-      symbol.setAttribute('aria-hidden', 'true');
-      el.appendChild(symbol);
+      const img = document.createElement('img');
+      img.className = 'wheel-icon-symbol';
+      img.src = item.icon;
+      img.alt = '';
+      img.setAttribute('aria-hidden', 'true');
+      el.appendChild(img);
 
       /* Keyboard: Enter or Space jumps to this icon */
       el.addEventListener('keydown', (e) => {
