@@ -24,11 +24,14 @@
   color: var(--white);
   padding: var(--sp-6) var(--sp-8);
   border-bottom: 4px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pictures-header-inner {
+  width: 100%;
   max-width: var(--max-width);
-  margin: 0 auto;
   text-align: center;
 }
 
