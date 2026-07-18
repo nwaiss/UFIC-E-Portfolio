@@ -221,10 +221,12 @@ class PhotoWheel {
     this.ringEl.style.transition = ringT;
     this.ringEl.style.transform  = `rotate(${this.totalRotation}deg)`;
 
-    /* Position each icon and counter-rotate to keep it upright */
+    /* Position each icon and counter-rotate to keep it upright.
+       Negative base places items clockwise so rotating the ring clockwise
+       brings the next higher-index item into the selection position. */
     this.iconEls.forEach((el, i) => {
-      const base    = i * step;
-      const counter = -(this.totalRotation + base);   /* net screen rotation = 0 */
+      const base    = -(i * step);
+      const counter = -(this.totalRotation + base);
       el.style.transition = iconT;
       el.style.transform  = `rotate(${base}deg) translateX(${RADIUS}px) rotate(${counter}deg)`;
       el.classList.toggle('active', i === this.current);
@@ -252,7 +254,7 @@ class PhotoWheel {
     const nearest = this._getNearestIndex();
 
     this.iconEls.forEach((el, i) => {
-      const base    = i * step;
+      const base    = -(i * step);
       const counter = -(this.totalRotation + base);
       el.style.transition = 'none';
       el.style.transform  = `rotate(${base}deg) translateX(${RADIUS}px) rotate(${counter}deg)`;
@@ -310,14 +312,14 @@ class PhotoWheel {
 
   next() {
     const step = 360 / this.items.length;
-    this.totalRotation -= step;
+    this.totalRotation += step;   /* clockwise */
     this.current = (this.current + 1) % this.items.length;
     this._render(true);
   }
 
   prev() {
     const step = 360 / this.items.length;
-    this.totalRotation += step;
+    this.totalRotation -= step;   /* counterclockwise */
     this.current = (this.current - 1 + this.items.length) % this.items.length;
     this._render(true);
   }
@@ -331,7 +333,7 @@ class PhotoWheel {
     if (delta >  n / 2) delta -= n;   /* always take the short way round */
     if (delta < -n / 2) delta += n;
 
-    this.totalRotation -= delta * step;
+    this.totalRotation += delta * step;   /* clockwise for positive delta */
     this.current = ((targetIndex % n) + n) % n;
     this._render(true);
   }
@@ -457,12 +459,12 @@ class PhotoWheel {
 
   /* ------------------------------------------------------------------------
      _getNearestIndex — Find the item currently closest to angle 0 (rightmost).
-     When totalRotation ≈ -k × step, item k is at angle 0.
+     With clockwise placement, item k is at angle 0 when totalRotation ≈ k × step.
      ------------------------------------------------------------------------ */
   _getNearestIndex() {
     const n    = this.items.length;
     const step = 360 / n;
-    const k    = Math.round(-this.totalRotation / step);
+    const k    = Math.round(this.totalRotation / step);
     return ((k % n) + n) % n;
   }
 
@@ -474,10 +476,10 @@ class PhotoWheel {
   _snapAndLoad() {
     const n    = this.items.length;
     const step = 360 / n;
-    const k    = Math.round(-this.totalRotation / step);
+    const k    = Math.round(this.totalRotation / step);
 
     this.current       = ((k % n) + n) % n;
-    this.totalRotation = -(k * step);      /* exact value for clean snapping */
+    this.totalRotation = k * step;         /* exact value for clean snapping */
     this._render(true);                    /* animate snap + load photo       */
   }
 
