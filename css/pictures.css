@@ -22,16 +22,16 @@
 .pictures-header {
   background-color: var(--blue);
   color: var(--white);
-  padding: var(--sp-6) var(--sp-8);
+  /* More top padding than bottom shifts the title down to clear the
+     visual weight of the fixed site header sitting directly above */
+  padding: var(--sp-8) var(--sp-8) var(--sp-4);
   border-bottom: 4px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .pictures-header-inner {
   width: 100%;
   max-width: var(--max-width);
+  margin: 0 auto;
   text-align: center;
 }
 

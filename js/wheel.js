@@ -39,67 +39,67 @@ const PHOTO_ITEMS = [
   {
     icon: '🏔️',
     title: 'Table Mountain',
-    description: 'The iconic flat-topped massif that watches over Cape Town. One of the most recognizable natural landmarks on earth — and even more striking in person.',
+    description: 'On our first day in Cape Town, we took in aerial views of the city from the top of Table Mountain.',
     photo: 'Photos/Table Mountain.jpeg'
   },
   {
-    icon: '⛰️',
+    icon: '🧗',
     title: "Lion's Head Peak",
-    description: "Standing at the summit of Lion's Head after the chain-and-ladder hike. At 669 meters, the view takes in Table Mountain, the Twelve Apostles, and the whole of Cape Town spread out below.",
+    description: "After finally reaching the peak, it was incredible how different the city looked from above.",
     photo: 'Photos/Lionhead Peak.jpeg'
   },
   {
-    icon: '🧗',
-    title: "Lion's Head Ascent",
-    description: "The lower slopes of Lion's Head on the approach to the summit, winding through Cape fynbos before the technical sections begin.",
+    icon: '🥾',
+    title: "Lion's Head",
+    description: "This photo was taken at the base of Lion's Head, a 669-meter peak on Cape Town's Atlantic Seaboard known for its iconic chain-and-ladder hike to the summit.",
     photo: 'Photos/Lionhead Base.jpeg'
   },
   {
-    icon: '🍳',
-    title: 'Cooking Class',
-    description: "A hands-on cooking class exploring Cape Town's Cape Malay culinary tradition — one of the most distinctive food cultures in the world.",
+    icon: '👨‍🍳',
+    title: 'Cooking Experience',
+    description: "I was able to channel my inner Gordon Ramsay as our group learned to prepare Indian cuisine, including samosas and roti.",
     photo: 'Photos/Cooking Experience.jpeg'
   },
   {
-    icon: '🦒',
+    icon: '🦁',
     title: 'Safari',
-    description: 'A wildlife encounter in the South African bush. Seeing these animals in their natural habitat is one of those experiences that permanently shifts your sense of scale.',
+    description: 'Aquila Safari took us through a private reserve where we saw zebras, ostriches, springbok, hippos, elephants, giraffes, and lions.',
     photo: 'Photos/Safari.jpeg'
   },
   {
-    icon: '🚢',
+    icon: '⛵',
     title: 'Seal Island',
-    description: 'A boat excursion from Hout Bay to Seal Island, home to thousands of Cape fur seals and dramatic scenery along the way.',
+    description: 'This boat trip took us around a small island where hundreds of Cape fur seals resided.',
     photo: 'Photos/Seal Isalnd Boat.jpeg'
   },
   {
-    icon: '🎿',
+    icon: '🪂',
     title: 'Ziplining',
-    description: 'An adventure day combining ziplining through the South African landscape with a traditional African massage.',
+    description: 'This photo shows the buggy ride, known as the African Massage, that took us up the mountain before we ziplined 100 meters above the ground.',
     photo: 'Photos/Ziplinning African Massage.jpeg'
   },
   {
-    icon: '💻',
+    icon: '📦',
     title: 'Amazon Skill Center',
-    description: 'A visit to the Amazon Skill Center — a community technology education program operating in Cape Town. Useful context for our own work at the Forum.',
+    description: 'We visited Amazon\'s Skill Center in Cape Town, where we learned about AWS and had the opportunity to practice our coding and presentation skills.',
     photo: 'Photos/Amazon Skill Center.jpeg'
   },
   {
-    icon: '🎪',
+    icon: '🏮',
     title: 'Taiwan Festival',
-    description: 'Cape Town hosts cultural festivals from communities worldwide. The Taiwan Festival added another layer to understanding how cosmopolitan the city truly is.',
+    description: 'During our time in Cape Town, a Taiwanese festival was taking place at the waterfront, immersing us in food, drinks, and performances.',
     photo: 'Photos/Taiwan Festical.jpeg'
   },
   {
     icon: '🏫',
     title: 'High School Visit',
-    description: 'A visit to a local Cape Town high school. Connecting with students gave us important context about the community our chatbot was ultimately built to serve.',
+    description: 'Our group was tasked with helping students at Curro Delft High School create tech solutions to problems they encounter in their daily lives.',
     photo: 'Photos/High School Experience.jpeg'
   },
   {
-    icon: '💥',
-    title: 'Historic Cannon',
-    description: "A historic Cape Town cannon — one of many reminders of the city's long strategic importance as a waypoint between Europe, Africa, and Asia.",
+    icon: '💣',
+    title: 'Cannon',
+    description: "This cannon was one of many scattered throughout Cape Town. This particular one stood in front of a local market.",
     photo: 'Photos/Cannon.jpeg'
   }
 ];
