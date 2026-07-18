@@ -114,7 +114,7 @@
   border-radius: 50%;
 
   border: 2px solid var(--light);
-  background-color: var(--white);
+  background-color: #e8e8e8;
 
   /* Transitions applied by JS — none on initial load */
   transition: none;
