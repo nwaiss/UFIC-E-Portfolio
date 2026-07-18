@@ -22,7 +22,7 @@
 .pictures-header {
   background-color: var(--blue);
   color: var(--white);
-  padding: var(--sp-3) var(--sp-8);
+  padding: var(--sp-6) var(--sp-8);
   border-bottom: 4px solid var(--gold);
 }
 
@@ -378,4 +378,47 @@
     transform: scale(0.75);
     transform-origin: top center;
   }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. FULL-VIEWPORT LAYOUT (desktop)
+   .page-photos on <body> makes header + strip + content + footer fill
+   exactly one screen height with no scrolling.
+   -------------------------------------------------------------------------- */
+
+/* Page content becomes a flex column filling the space below the fixed header */
+body.page-photos .page-content {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main section expands to fill all remaining space between strip and footer */
+body.page-photos .pictures-main {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Footer: kill the huge margin-top, minimal padding, hide decorative rule */
+body.page-photos .site-footer {
+  flex-shrink: 0;
+  margin-top: 0;
+  padding: var(--sp-3) var(--sp-8);
+}
+
+body.page-photos .site-footer::before {
+  display: none;
+}
+
+/* Scale the wheel down on shorter desktop screens so everything still fits */
+@media (max-height: 860px) {
+  body.page-photos .wheel-area { zoom: 0.85; }
+}
+
+@media (max-height: 720px) {
+  body.page-photos .wheel-area { zoom: 0.72; }
 }
