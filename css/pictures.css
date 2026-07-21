@@ -22,25 +22,22 @@
 .pictures-header {
   background-color: var(--blue);
   color: var(--white);
-  /* More top padding than bottom shifts the title down to clear the
-     visual weight of the fixed site header sitting directly above */
-  padding: var(--sp-8) var(--sp-8) var(--sp-4);
+  padding: var(--sp-10) var(--sp-8) var(--sp-8);
   border-bottom: 4px solid var(--gold);
 }
 
 .pictures-header-inner {
-  width: 100%;
-  max-width: var(--max-width);
+  max-width: 860px;
   margin: 0 auto;
   text-align: center;
 }
 
 .pictures-page-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 
@@ -409,7 +406,7 @@ body.page-photos .pictures-main {
   align-items: center;
 }
 
-/* Footer: kill the huge margin-top, minimal padding, hide decorative rule */
+/* Footer: kill the huge margin-top, compact vertical padding, hide decorative rule */
 body.page-photos .site-footer {
   flex-shrink: 0;
   margin-top: 0;
@@ -421,10 +418,10 @@ body.page-photos .site-footer::before {
 }
 
 /* Scale the wheel down on shorter desktop screens so everything still fits */
-@media (max-height: 860px) {
+@media (max-height: 920px) {
   body.page-photos .wheel-area { zoom: 0.85; }
 }
 
-@media (max-height: 720px) {
+@media (max-height: 780px) {
   body.page-photos .wheel-area { zoom: 0.72; }
 }

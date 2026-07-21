@@ -17,6 +17,7 @@
 .article-hero-inner {
   max-width: 860px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .article-hero-title {
@@ -33,7 +34,7 @@
    Comfortable reading width (~70 ch), centered.
    -------------------------------------------------------------------------- */
 .article-body-wrap {
-  padding: var(--sp-24) var(--sp-8) var(--sp-32);
+  padding: var(--sp-24) var(--sp-8) var(--sp-10);
 }
 
 .article-body {
@@ -115,6 +116,14 @@
   margin-bottom: var(--sp-2);
   list-style: disc;
 }
+
+/* --- Links --- */
+.article-body a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.article-body a:hover { color: var(--gold); }
 
 /* --- Emphasis --- */
 .article-body strong { color: var(--black); font-weight: 600; }
@@ -267,7 +276,35 @@
 
 
 /* --------------------------------------------------------------------------
-   9. RESPONSIVE
+   9. FOOTER SPACING — override the generous home-page margin for article pages
+   -------------------------------------------------------------------------- */
+body.page-article .site-footer {
+  margin-top: var(--sp-8);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. VIDEO EMBED (Application Overview page)
+   -------------------------------------------------------------------------- */
+.article-video-wrap {
+  margin: var(--sp-12) auto 0;
+  text-align: center;
+  clear: both;
+}
+
+.article-video-wrap video {
+  max-height: 72vh;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  background: #000;
+  border-top: 3px solid var(--green);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE
    -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
   .article-photo--right,
