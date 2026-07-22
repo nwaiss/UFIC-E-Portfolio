@@ -41,84 +41,33 @@
 
         <p>
           The <a href="https://www.princessvlei.org/" target="_blank" rel="noopener noreferrer">Princess Vlei Forum</a>
-          is a Cape Town non-profit dedicated to protecting the Princess Vlei wetland. Their
-          website hosts general information alongside over 200 historical articles, and rather
-          than asking visitors to search through all of that, every page on the site carries
-          an embedded AI chatbot &mdash; the Princess Vlei Assistant. It appears as a floating
-          button any visitor can open to ask plain-language questions about the forum, the vlei's
-          history, local wildlife, conservation efforts, or how to visit, and get a direct answer
-          instead of hunting through pages.
-        </p>
-
-        <h2>How It Is Built</h2>
-
-        <p>
-          The chatbot widget is a single self-contained JavaScript file &mdash; roughly 1,300
-          lines &mdash; with no framework, no build step, and no external dependencies. It
-          constructs its entire user interface at runtime, which keeps the footprint small and
-          ensures it loads reliably on any device. The broader site runs on Cloudflare Workers,
-          an edge-computing platform that serves content from data centers geographically close
-          to each visitor rather than from one central server &mdash; a practical and cost-effective
-          choice for a small non-profit.
+          is a Cape Town non-profit protecting the Princess Vlei wetland. Their site contains
+          over 200 historical articles and general information pages. Our team built the Princess
+          Vlei Assistant, an AI chatbot embedded on every page, so visitors can ask direct
+          questions about the vlei's history, wildlife, conservation work, and visiting details
+          rather than searching through the archive.
         </p>
 
         <p>
-          The AI backend is a separate Cloudflare Worker. When a visitor asks a question, the
-          browser sends that message along with the last six messages of conversation history as
-          a JSON payload to this backend, which queries an AI language model and returns a
-          formatted response &mdash; including relevant links &mdash; rendered client-side through
-          a hand-built Markdown renderer. The system prompt, knowledge base, and exact model
-          configuration live in this external backend and were tuned specifically for the Princess
-          Vlei Forum's content.
-        </p>
-
-        <h2>Key Engineering Decisions</h2>
-
-        <p>
-          <strong>AI-generated link safety.</strong> AI models can occasionally suggest incorrect
-          or fabricated URLs. To prevent bad links from becoming clickable, every URL the AI
-          returns is checked against a hardcoded allowlist of trusted domains. Links to
-          unrecognized domains render as plain text rather than hyperlinks &mdash; the reference
-          is still visible, but a visitor cannot accidentally click through to an unreliable source.
+          The chatbot is a single self-contained JavaScript file with no framework or build step,
+          automatically injected across all 230-plus pages on the site. It runs on Cloudflare
+          Workers, an edge platform that serves content from data centers close to each visitor.
+          When someone asks a question, the browser sends that message along with up to six prior
+          exchanges to a separate AI backend, which queries a language model and returns a
+          formatted response rendered client-side. Every link the AI suggests is validated against
+          a trusted domain allowlist before it becomes clickable; anything outside the list appears
+          as plain text only.
         </p>
 
         <p>
-          <strong>Cost and reliability.</strong> Rather than depending on a single AI provider,
-          the backend runs a primary-to-backup fallback chain. If the main model is slow, over
-          budget, or experiencing errors, the system automatically switches to a secondary
-          provider. Users see a transparent &ldquo;limited mode&rdquo; notice rather than a
-          silent failure &mdash; an honest and practical approach for an organization with a
-          tight budget.
-        </p>
-
-        <p>
-          <strong>Context management and rate-limiting.</strong> To keep costs predictable, each
-          request sends only the last six messages of conversation history rather than the full
-          session. Visitors are assigned an anonymous per-browser identifier used server-side
-          for rate-limiting, with no personal data collected or stored.
-        </p>
-
-        <h2>User Experience</h2>
-
-        <p>
-          A visitor lands on any page of the Princess Vlei Forum site and sees a floating green
-          button in the bottom-right corner. Clicking it opens a chat panel with a greeting and
-          four quick-question shortcuts covering the most common topics. They can select one or
-          type their own question. A typing indicator appears while the response is generated,
-          and the reply renders with formatted text and, where appropriate, safe clickable links.
-          The conversation persists across multiple exchanges, and the panel can be closed and
-          reopened at any time without losing the thread. The widget is auto-injected across all
-          230-plus pages on the site.
-        </p>
-
-        <h2>Testing</h2>
-
-        <p>
-          Automated tests cover the site's infrastructure &mdash; routing, admin authentication,
-          and request handling. Conversational testing, including guardrails and off-topic edge
-          cases, was conducted manually against the live backend. One guardrail is directly
-          demonstrable: ask the chatbot about a source outside the trusted domain list and its
-          link will appear as plain text rather than a hyperlink.
+          The backend was built with cost control and reliability in mind. It runs a
+          primary-to-backup AI provider fallback, so if the main model is slow, over budget, or
+          unavailable, the system switches automatically and shows users a clear notice rather
+          than failing silently. Each request sends only the last six messages of conversation
+          history to keep usage predictable, and visitors are assigned an anonymous per-browser
+          ID for server-side rate-limiting with no personal data collected or stored.
+          Conversational testing and guardrail validation were conducted manually against the
+          live backend, with the link-safety guardrail directly observable in the working product.
         </p>
 
         <div class="article-video-wrap">
