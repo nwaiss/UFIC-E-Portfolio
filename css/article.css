@@ -299,6 +299,7 @@ body.page-article .site-footer {
   letter-spacing: 0.14em;
   color: var(--mid);
   margin-bottom: var(--sp-2);
+  max-width: none;
   text-align: center;
 }
 
