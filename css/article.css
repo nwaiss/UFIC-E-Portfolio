@@ -292,6 +292,16 @@ body.page-article .site-footer {
   clear: both;
 }
 
+.video-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+  margin-bottom: var(--sp-2);
+  text-align: center;
+}
+
 .article-video-wrap video {
   max-height: 72vh;
   width: auto;
